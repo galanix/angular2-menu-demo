@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <div class="row">
+      	<div class="col-xs-12">
+      	    <input type="text" placeholder="Try: 'chicken' or 'mushroom'" class="form-control"
+      	    	(keyup.enter)="filterItems();"
+      	    	[(ngModel)]="searchTerm">
+
+      	  	<div class="narrow-button">
+      	    	<button class="btn btn-primary" (click)="filterItems();">Narrow It Down For Me!</button>
+      	  	</div>
+      	</div>
+    </div>
+
+    <br>
+    <br>
+    
+    <div *ngIf="message" class="message">{{message}}</div>
+    <!-- found-items should be implemented as a component -->
+    <div class="found-items">
+    	<ul>
+    		<div class="flex-container">
+    			<li *ngFor="let item of itemsFiltered; let id=index " >
+    				<div class="panel panel-primary">
+						<div class="panel-heading">
+							{{item.short_name}}, 
+							{{item.name}}
+						</div>
+					  	<div class="panel-body">
+					  	  	{{item.description}}
+					  	</div>
+					  	<div class="panel-footer">
+					  		<button class="btn center-block" (click)="removeItem();">Don't want this one</button>
+					  	</div>
+					</div>
+    			</li>
+    		</div>
+    	</ul>
+    </div>
+</div>
